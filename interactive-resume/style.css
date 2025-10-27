@@ -1,0 +1,353 @@
+/* -------------------------------------------------
+   CSS VARIABLES (now include skill widths)
+------------------------------------------------- */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #222222;
+    --accent: #0066ff;
+    --skill-fill: #28a745;
+    --timeline-line: #cccccc;
+    --card-bg: #f9f9f9;
+    --border: #dddddd;
+    --shadow: 0 2px 6px rgba(0,0,0,.08);
+
+    /* Default skill widths (will be overridden by JS) */
+    --skill-1: 0%;
+    --skill-2: 0%;
+    --skill-3: 0%;
+    --skill-4: 0%;
+}
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --accent: #4da6ff;
+    --skill-fill: #32cd32;
+    --timeline-line: #555555;
+    --card-bg: #2c2c2c;
+    --border: #444444;
+    --shadow: 0 2px 6px rgba(0,0,0,.3);
+}
+
+/* -------------------------------------------------
+   BASIC RESET & TYPOGRAPHY
+------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+html {
+    font-size: 100%;
+}
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 1.5rem;
+    transition: background .3s, color .3s;
+}
+
+/* -------------------------------------------------
+   UTILITIES
+------------------------------------------------- */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* -------------------------------------------------
+   LAYOUT
+------------------------------------------------- */
+#resume {
+    max-width: 960px;
+    margin: 0 auto;
+}
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin: .5rem 0;
+}
+#intro {
+    font-size: 1.2rem;
+    margin: 1.5rem 0;
+}
+#cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: var(--text-color);
+    animation: blink .7s infinite;
+}
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* -------------------------------------------------
+   BUTTONS
+------------------------------------------------- */
+button,
+select {
+    font: inherit;
+    cursor: pointer;
+}
+#theme-toggle,
+#pdf-download,
+.carousel-nav button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: .6rem 1rem;
+    border-radius: .3rem;
+    font-weight: 600;
+    transition: background .2s;
+}
+#theme-toggle:hover,
+#pdf-download:hover,
+.carousel-nav button:hover {
+    background: #0056d2;
+}
+#theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+}
+#pdf-download {
+    display: block;
+    margin: 1.5rem auto;
+}
+
+/* -------------------------------------------------
+   TIMELINE
+------------------------------------------------- */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.timeline::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    background: var(--timeline-line);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+}
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .6s ease-out, transform .6s ease-out;
+}
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.timeline-item::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: var(--accent);
+    border: 4px solid var(--bg-color);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+.timeline-item:nth-child(odd)::after {
+    right: -8px;
+}
+.timeline-item:nth-child(even)::after {
+    left: -8px;
+}
+
+/* -------------------------------------------------
+   ACCORDION
+------------------------------------------------- */
+.accordion {
+    background: var(--card-bg);
+    padding: .8rem 1rem;
+    cursor: pointer;
+    border-radius: .3rem;
+    margin-bottom: .5rem;
+    user-select: none;
+    box-shadow: var(--shadow);
+}
+.panel {
+    display: none;
+    background: var(--card-bg);
+    padding: .8rem 1rem;
+    border-radius: .3rem;
+    margin-top: .2rem;
+    box-shadow: var(--shadow);
+}
+
+/* -------------------------------------------------
+   SKILL BARS
+------------------------------------------------- */
+.skill {
+    margin-bottom: 1.2rem;
+}
+.skill-name {
+    font-weight: 600;
+    margin-bottom: .3rem;
+}
+.skill-bar {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: .3rem;
+    overflow: hidden;
+}
+.skill-fill {
+    background: var(--skill-fill);
+    height: 100%;
+    width: 0;
+    transition: width 1.2s ease-out;
+}
+
+/* Assign each skill bar a unique variable */
+.skill:nth-child(1) .skill-fill { width: var(--skill-1); }
+.skill:nth-child(2) .skill-fill { width: var(--skill-2); }
+.skill:nth-child(3) .skill-fill { width: var(--skill-3); }
+.skill:nth-child(4) .skill-fill { width: var(--skill-4); }
+
+/* -------------------------------------------------
+   PROJECTS
+------------------------------------------------- */
+#project-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: .4rem;
+    padding: 1rem;
+    flex: 1 1 300px;
+    box-shadow: var(--shadow);
+}
+.github-stats {
+    font-size: .85rem;
+    color: #777;
+    margin-top: .5rem;
+}
+
+/* -------------------------------------------------
+   MAP
+------------------------------------------------- */
+#map {
+    height: 320px;
+    margin: 1.5rem 0;
+    border-radius: .4rem;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+/* -------------------------------------------------
+   CAROUSEL
+------------------------------------------------- */
+.carousel {
+    position: relative;
+    max-width: 640px;
+    margin: 2rem auto;
+    overflow: hidden;
+    border-radius: .4rem;
+    box-shadow: var(--shadow);
+}
+.carousel-inner {
+    display: flex;
+    transition: transform .5s ease;
+}
+.carousel-item {
+    min-width: 100%;
+    padding: 2rem;
+    background: var(--card-bg);
+    text-align: center;
+    font-style: italic;
+}
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+.carousel-nav button {
+    pointer-events: auto;
+}
+
+/* -------------------------------------------------
+   PRINT STYLES (NOW VALID!)
+------------------------------------------------- */
+@media print {
+    #theme-toggle,
+    #pdf-download,
+    .carousel-nav,
+    #map,
+    .skip-link {
+        display: none !important;
+    }
+    body {
+        background: #fff;
+        color: #000;
+    }
+    .panel {
+        display: block !important;
+    }
+    .timeline-item {
+        opacity: 1;
+        transform: none;
+    }
+    /* Skill bars use CSS variables set by JS */
+    .skill-fill {
+        width: var(--skill-1, 0%) !important;
+    }
+    .skill:nth-child(2) .skill-fill { width: var(--skill-2, 0%) !important; }
+    .skill:nth-child(3) .skill-fill { width: var(--skill-3, 0%) !important; }
+    .skill:nth-child(4) .skill-fill { width: var(--skill-4, 0%) !important; }
+}
+
+/* -------------------------------------------------
+   ACCESSIBILITY
+------------------------------------------------- */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--accent);
+    color: #fff;
+    padding: .5rem;
+    z-index: 200;
+}
+.skip-link:focus {
+    top: 0;
+}
