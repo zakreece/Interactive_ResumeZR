@@ -1,0 +1,165 @@
+<!-- index.html: Main HTML structure for the interactive resume. -->
+<!-- Includes sections: header, about, education, experience, skills, projects, contact. -->
+<!-- Links to CSS and JS files. -->
+<!-- Added dark mode toggle, back-to-top, downloadable PDF, timelines, filterable projects with modals, parallax, typewriter, embedded media, accessibility, SEO, preloader. -->
+
+<!DOCTYPE html> <!-- HTML5 doctype. -->
+<html lang="en"> <!-- HTML root with language. -->
+<head> <!-- Head section for meta data. -->
+    <meta charset="UTF-8"> <!-- Character encoding. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive viewport. -->
+    <meta name="description" content="Professional resume and portfolio of Your Name."> <!-- SEO description. -->
+    <meta name="keywords" content="resume, portfolio, skills, experience"> <!-- SEO keywords. -->
+    <title>Interactive Resume - Your Name</title> <!-- Page title. -->
+    <link rel="stylesheet" href="styles.css"> <!-- CSS link. -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Font import. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Icons link. -->
+    <!-- Google Analytics script. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-XXXXX-X');
+    </script>
+</head> <!-- End head. -->
+<body> <!-- Body section for content. -->
+    <div id="preloader"> <!-- Preloader div. -->
+        <div class="spinner"></div> <!-- Spinner. -->
+    </div> <!-- End preloader. -->
+
+    <header id="header" role="banner"> <!-- Header with role. -->
+        <div class="container"> <!-- Container for centering. -->
+            <h1 class="typewriter">Your Name</h1> <!-- Main heading with typewriter. -->
+            <p>Professional Title | Location | Email: your.email@example.com | Phone: (123) 456-7890</p> <!-- Contact info. -->
+            <nav role="navigation"> <!-- Nav with role. -->
+                <ul> <!-- Unordered list. -->
+                    <li><a href="#about">About</a></li> <!-- Link to about. -->
+                    <li><a href="#education">Education</a></li> <!-- Link to education. -->
+                    <li><a href="#experience">Experience</a></li> <!-- Link to experience. -->
+                    <li><a href="#skills">Skills</a></li> <!-- Link to skills. -->
+                    <li><a href="#projects">Projects</a></li> <!-- Link to projects. -->
+                    <li><a href="#contact">Contact</a></li> <!-- Link to contact. -->
+                </ul> <!-- End list. -->
+            </nav> <!-- End nav. -->
+            <button id="dark-mode-toggle" aria-label="Toggle Dark Mode">Toggle Dark Mode</button> <!-- Dark mode button with aria. -->
+            <a href="resume.pdf" download class="download-btn" aria-label="Download PDF Resume">Download PDF Resume</a> <!-- Download link. -->
+        </div> <!-- End container. -->
+    </header> <!-- End header. -->
+
+    <section id="about" class="section"> <!-- About section. -->
+        <div class="parallax-bg"></div> <!-- Parallax background. -->
+        <div class="container"> <!-- Container. -->
+            <h2>About Me</h2> <!-- Section heading. -->
+            <p>A dedicated professional with extensive experience in [Your Field]. Passionate about [Your Interests], I strive to deliver high-quality results in every project.</p> <!-- Description. -->
+            <button id="toggle-about" aria-label="Toggle More Details">Toggle More Details</button> <!-- Toggle button with aria. -->
+            <div id="about-details" class="hidden"> <!-- Hidden details. -->
+                <p>Additional information: I have worked on various projects involving [Specific Skills], and I hold certifications in [Certifications].</p> <!-- Extra info. -->
+            </div> <!-- End details. -->
+        </div> <!-- End container. -->
+    </section> <!-- End about. -->
+
+    <section id="education" class="section"> <!-- Education section. -->
+        <div class="container"> <!-- Container. -->
+            <h2>Education</h2> <!-- Heading. -->
+            <div class="timeline"> <!-- Timeline container. -->
+                <div class="timeline-item"> <!-- Timeline item. -->
+                    <h3>Degree in [Field], University Name</h3> <!-- Degree info. -->
+                    <p>Graduated: Year | GPA: X.XX</p> <!-- Details. -->
+                </div> <!-- End item. -->
+                <!-- Add more timeline-item for additional entries. -->
+            </div> <!-- End timeline. -->
+        </div> <!-- End container. -->
+    </section> <!-- End education. -->
+
+    <section id="experience" class="section"> <!-- Experience section. -->
+        <div class="container"> <!-- Container. -->
+            <h2>Professional Experience</h2> <!-- Heading. -->
+            <div class="timeline"> <!-- Timeline container. -->
+                <div class="timeline-item"> <!-- Timeline item. -->
+                    <h3>Job Title at Company Name</h3> <!-- Title. -->
+                    <p>Duration: Start - End | Location</p> <!-- Duration. -->
+                    <ul> <!-- Achievements list. -->
+                        <li>Achievement or responsibility 1.</li> <!-- Achievement. -->
+                        <li>Achievement or responsibility 2.</li> <!-- Achievement. -->
+                    </ul> <!-- End list. -->
+                </div> <!-- End item. -->
+                <!-- Add more timeline-item for additional entries. -->
+            </div> <!-- End timeline. -->
+        </div> <!-- End container. -->
+    </section> <!-- End experience. -->
+
+    <section id="skills" class="section"> <!-- Skills section. -->
+        <div class="container"> <!-- Container. -->
+            <h2>Skills</h2> <!-- Heading. -->
+            <div class="skills-grid"> <!-- Grid for skills. -->
+                <div class="skill"> <!-- Skill item. -->
+                    <span>Skill Name</span> <!-- Name. -->
+                    <div class="progress-bar"> <!-- Bar container. -->
+                        <div class="progress" style="width: 90%;"></div> <!-- Progress fill. -->
+                    </div> <!-- End bar. -->
+                </div> <!-- End skill. -->
+                <!-- Add more skills. -->
+            </div> <!-- End grid. -->
+            <button id="animate-skills" aria-label="Animate Skills">Animate Skills</button> <!-- Animate button with aria. -->
+        </div> <!-- End container. -->
+    </section> <!-- End skills. -->
+
+    <section id="projects" class="section"> <!-- Projects section. -->
+        <div class="container"> <!-- Container. -->
+            <h2>Projects</h2> <!-- Heading. -->
+            <div class="filter-buttons"> <!-- Filter buttons. -->
+                <button data-filter="all">All</button> <!-- All filter. -->
+                <button data-filter="web">Web</button> <!-- Web filter. -->
+                <!-- Add more filters as needed. -->
+            </div> <!-- End filters. -->
+            <div class="projects-grid"> <!-- Grid for projects. -->
+                <div class="project-item" data-category="web"> <!-- Project item. -->
+                    <h3>Project Title</h3> <!-- Title. -->
+                    <p>Description of the project. Technologies used: [Tech Stack].</p> <!-- Description. -->
+                    <img src="project-image.jpg" alt="Project Image" class="project-media"> <!-- Embedded image. -->
+                    <video controls class="project-media"><source src="demo.mp4" type="video/mp4"></video> <!-- Embedded video. -->
+                    <a href="https://project-link.com" target="_blank">View Project</a> <!-- Link. -->
+                    <button class="open-modal" data-modal="modal1">View Details</button> <!-- Modal button. -->
+                </div> <!-- End item. -->
+                <!-- Add more project-item with categories. -->
+            </div> <!-- End grid. -->
+        </div> <!-- End container. -->
+        <div id="modal1" class="modal hidden"> <!-- Example modal. -->
+            <div class="modal-content"> <!-- Modal content. -->
+                <span class="close">&times;</span> <!-- Close. -->
+                <h3>Project Details</h3> <!-- Heading. -->
+                <p>More detailed information about the project.</p> <!-- Details. -->
+            </div> <!-- End content. -->
+        </div> <!-- End modal. -->
+        <!-- Add more modals as needed. -->
+    </section> <!-- End projects. -->
+
+    <section id="contact" class="section"> <!-- Contact section. -->
+        <div class="container"> <!-- Container. -->
+            <h2>Contact Me</h2> <!-- Heading. -->
+            <form id="contact-form"> <!-- Form. -->
+                <input type="text" placeholder="Your Name" required aria-label="Your Name"> <!-- Name input with aria. -->
+                <input type="email" placeholder="Your Email" required aria-label="Your Email"> <!-- Email input with aria. -->
+                <textarea placeholder="Your Message" required aria-label="Your Message"></textarea> <!-- Message area with aria. -->
+                <button type="submit">Send Message</button> <!-- Submit button. -->
+            </form> <!-- End form. -->
+            <div id="form-response" class="hidden"></div> <!-- Response div. -->
+            <div class="social-links"> <!-- Social links. -->
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a> <!-- LinkedIn with aria. -->
+                <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a> <!-- GitHub with aria. -->
+            </div> <!-- End links. -->
+        </div> <!-- End container. -->
+    </section> <!-- End contact. -->
+
+    <footer role="contentinfo"> <!-- Footer with role. -->
+        <div class="container"> <!-- Container. -->
+            <p>&copy; 2025 Your Name. All rights reserved.</p> <!-- Copyright. -->
+        </div> <!-- End container. -->
+    </footer> <!-- End footer. -->
+
+    <button id="back-to-top" class="hidden" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button> <!-- Back-to-top button with aria. -->
+
+    <script src="script.js"></script> <!-- JS link. -->
+</body> <!-- End body. -->
+</html> <!-- End HTML. -->

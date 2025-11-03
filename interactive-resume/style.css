@@ -1,0 +1,424 @@
+/* styles.css: CSS styles for the resume. */
+/* Uses flexbox, grid, animations, media queries. */
+/* Professional look with blues and grays. */
+/* Added dark mode, timeline, filters, modals, parallax, typewriter, media, preloader. */
+
+body { /* Base styles. */
+    font-family: 'Roboto', sans-serif; /* Font. */
+    margin: 0; /* No margin. */
+    padding: 0; /* No padding. */
+    background-color: #f4f4f4; /* Background. */
+    color: #333; /* Text color. */
+    line-height: 1.6; /* Line height. */
+}
+
+.container { /* Centering container. */
+    max-width: 1200px; /* Max width. */
+    margin: 0 auto; /* Center. */
+    padding: 20px; /* Padding. */
+}
+
+#header { /* Header styles. */
+    background-color: #007bff; /* Background. */
+    color: white; /* Text color. */
+    padding: 20px 0; /* Padding. */
+    position: fixed; /* Fixed position. */
+    width: 100%; /* Full width. */
+    top: 0; /* Top position. */
+    z-index: 1000; /* Z-index. */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Shadow. */
+}
+
+#header h1 { /* Heading styles. */
+    margin: 0; /* No margin. */
+    font-size: 2.5em; /* Size. */
+}
+
+#header p { /* Paragraph styles. */
+    margin: 5px 0; /* Margin. */
+}
+
+nav ul { /* Nav list styles. */
+    list-style: none; /* No bullets. */
+    padding: 0; /* No padding. */
+    display: flex; /* Flex display. */
+    justify-content: center; /* Center. */
+}
+
+nav ul li { /* List item styles. */
+    margin: 0 15px; /* Margin. */
+}
+
+nav ul li a { /* Link styles. */
+    color: white; /* Color. */
+    text-decoration: none; /* No underline. */
+    font-weight: bold; /* Bold. */
+    transition: color 0.3s; /* Transition. */
+}
+
+nav ul li a:hover { /* Hover styles. */
+    color: #ffd700; /* Color. */
+}
+
+.section { /* Section styles. */
+    padding: 80px 0 60px; /* Padding. */
+    background-color: white; /* Background. */
+    margin-top: 100px; /* Margin. */
+    box-shadow: 0 0 10px rgba(0,0,0,0.05); /* Shadow. */
+    border-radius: 8px; /* Radius. */
+    position: relative; /* For parallax. */
+    overflow: hidden; /* Hide overflow. */
+}
+
+.section h2 { /* Heading styles. */
+    text-align: center; /* Center. */
+    margin-bottom: 40px; /* Margin. */
+    font-size: 2em; /* Size. */
+    color: #007bff; /* Color. */
+    position: relative; /* Relative. */
+}
+
+.section h2::after { /* Underline. */
+    content: ''; /* Content. */
+    display: block; /* Block. */
+    width: 50px; /* Width. */
+    height: 3px; /* Height. */
+    background: #007bff; /* Background. */
+    margin: 10px auto 0; /* Margin. */
+}
+
+.hidden { /* Hide class. */
+    display: none; /* None. */
+}
+
+button { /* Button styles. */
+    background-color: #007bff; /* Background. */
+    color: white; /* Color. */
+    border: none; /* No border. */
+    padding: 10px 20px; /* Padding. */
+    cursor: pointer; /* Cursor. */
+    font-size: 1em; /* Size. */
+    border-radius: 5px; /* Radius. */
+    transition: background-color 0.3s, transform 0.3s; /* Transition. */
+}
+
+button:hover { /* Hover. */
+    background-color: #0056b3; /* Background. */
+    transform: scale(1.05); /* Scale. */
+}
+
+.skills-grid { /* Grid styles. */
+    display: grid; /* Grid. */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columns. */
+    gap: 20px; /* Gap. */
+}
+
+.skill { /* Skill item. */
+    background: #f9f9f9; /* Background. */
+    padding: 15px; /* Padding. */
+    border-radius: 8px; /* Radius. */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Shadow. */
+}
+
+.progress-bar { /* Bar container. */
+    background: #e0e0e0; /* Background. */
+    border-radius: 20px; /* Radius. */
+    height: 10px; /* Height. */
+    margin-top: 10px; /* Margin. */
+    overflow: hidden; /* Overflow. */
+}
+
+.progress { /* Progress fill. */
+    background: #007bff; /* Background. */
+    height: 100%; /* Height. */
+    width: 0; /* Width. */
+    transition: width 1s ease-in-out; /* Transition. */
+}
+
+.timeline { /* Timeline container. */
+    position: relative; /* Relative. */
+    max-width: 800px; /* Max width. */
+    margin: 0 auto; /* Center. */
+}
+
+.timeline::after { /* Timeline line. */
+    content: ''; /* Content. */
+    position: absolute; /* Absolute. */
+    width: 2px; /* Width. */
+    background: #007bff; /* Background. */
+    top: 0; /* Top. */
+    bottom: 0; /* Bottom. */
+    left: 50%; /* Left. */
+}
+
+.timeline-item { /* Timeline item. */
+    position: relative; /* Relative. */
+    width: 50%; /* Width. */
+    padding: 20px; /* Padding. */
+    opacity: 0; /* Initial opacity. */
+    transition: opacity 0.5s, transform 0.5s; /* Transition. */
+}
+
+.timeline-item:nth-child(odd) { /* Odd items. */
+    left: 0; /* Left. */
+    transform: translateX(-50px); /* Translate. */
+}
+
+.timeline-item:nth-child(even) { /* Even items. */
+    left: 50%; /* Left. */
+    transform: translateX(50px); /* Translate. */
+}
+
+.timeline-item.visible { /* Visible class. */
+    opacity: 1; /* Opacity. */
+    transform: translateX(0); /* Translate. */
+}
+
+.filter-buttons { /* Filter buttons. */
+    text-align: center; /* Center. */
+    margin-bottom: 20px; /* Margin. */
+}
+
+.filter-buttons button { /* Filter button styles. */
+    margin: 0 5px; /* Margin. */
+}
+
+.projects-grid { /* Projects grid. */
+    display: grid; /* Grid. */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columns. */
+    gap: 20px; /* Gap. */
+}
+
+.timeline-item, .project-item { /* Item styles. */
+    margin-bottom: 30px; /* Margin. */
+    padding: 20px; /* Padding. */
+    background: #f9f9f9; /* Background. */
+    border-radius: 8px; /* Radius. */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Shadow. */
+}
+
+.project-media { /* Media styles. */
+    max-width: 100%; /* Max width. */
+    height: auto; /* Auto height. */
+    margin-bottom: 10px; /* Margin. */
+}
+
+.modal { /* Modal. */
+    position: fixed; /* Fixed. */
+    top: 0; /* Top. */
+    left: 0; /* Left. */
+    width: 100%; /* Width. */
+    height: 100%; /* Height. */
+    background: rgba(0,0,0,0.7); /* Background. */
+    z-index: 1000; /* Z-index. */
+}
+
+.modal-content { /* Modal content. */
+    background: white; /* Background. */
+    margin: 15% auto; /* Margin. */
+    padding: 20px; /* Padding. */
+    width: 80%; /* Width. */
+    border-radius: 8px; /* Radius. */
+}
+
+.close { /* Close button. */
+    cursor: pointer; /* Cursor. */
+    float: right; /* Float. */
+    font-size: 1.5em; /* Size. */
+}
+
+.parallax-bg { /* Parallax background. */
+    background: url('background-image.jpg') no-repeat center; /* Background. */
+    background-size: cover; /* Cover. */
+    position: absolute; /* Absolute. */
+    top: 0; /* Top. */
+    left: 0; /* Left. */
+    width: 100%; /* Width. */
+    height: 100%; /* Height. */
+    z-index: -1; /* Z-index. */
+}
+
+.typewriter { /* Typewriter animation. */
+    overflow: hidden; /* Hidden. */
+    border-right: 0.15em solid #007bff; /* Border. */
+    white-space: nowrap; /* Nowrap. */
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite; /* Animation. */
+}
+
+@keyframes typing { /* Typing keyframes. */
+    from { width: 0; } /* From. */
+    to { width: 100%; } /* To. */
+}
+
+@keyframes blink-caret { /* Blink keyframes. */
+    from, to { border-color: transparent; } /* From/to. */
+    50% { border-color: #007bff; } /* 50%. */
+}
+
+.download-btn { /* Download button. */
+    background-color: #28a745; /* Background. */
+    color: white; /* Color. */
+    padding: 10px 20px; /* Padding. */
+    border-radius: 5px; /* Radius. */
+    text-decoration: none; /* No underline. */
+    transition: background-color 0.3s, transform 0.3s; /* Transition. */
+    display: inline-block; /* Inline block. */
+    margin-left: 10px; /* Margin. */
+}
+
+.download-btn:hover { /* Hover. */
+    background-color: #218838; /* Background. */
+    transform: scale(1.05); /* Scale. */
+}
+
+form { /* Form styles. */
+    display: flex; /* Flex. */
+    flex-direction: column; /* Column. */
+    max-width: 600px; /* Width. */
+    margin: 0 auto; /* Center. */
+}
+
+input, textarea { /* Input styles. */
+    margin-bottom: 15px; /* Margin. */
+    padding: 10px; /* Padding. */
+    border: 1px solid #ccc; /* Border. */
+    border-radius: 5px; /* Radius. */
+    font-size: 1em; /* Size. */
+}
+
+.social-links { /* Links container. */
+    text-align: center; /* Center. */
+    margin-top: 20px; /* Margin. */
+}
+
+.social-links a { /* Link styles. */
+    color: #007bff; /* Color. */
+    font-size: 1.5em; /* Size. */
+    margin: 0 10px; /* Margin. */
+    transition: color 0.3s; /* Transition. */
+}
+
+.social-links a:hover { /* Hover. */
+    color: #0056b3; /* Color. */
+}
+
+footer { /* Footer styles. */
+    background: #007bff; /* Background. */
+    color: white; /* Color. */
+    text-align: center; /* Center. */
+    padding: 20px 0; /* Padding. */
+    margin-top: 40px; /* Margin. */
+}
+
+#preloader { /* Preloader. */
+    position: fixed; /* Fixed. */
+    top: 0; /* Top. */
+    left: 0; /* Left. */
+    width: 100%; /* Width. */
+    height: 100%; /* Height. */
+    background: #fff; /* Background. */
+    z-index: 9999; /* Z-index. */
+    display: flex; /* Flex. */
+    align-items: center; /* Align. */
+    justify-content: center; /* Justify. */
+}
+
+.spinner { /* Spinner. */
+    border: 4px solid #f3f3f3; /* Border. */
+    border-top: 4px solid #007bff; /* Top border. */
+    border-radius: 50%; /* Radius. */
+    width: 40px; /* Width. */
+    height: 40px; /* Height. */
+    animation: spin 1s linear infinite; /* Animation. */
+}
+
+@keyframes spin { /* Spin keyframes. */
+    0% { transform: rotate(0deg); } /* 0%. */
+    100% { transform: rotate(360deg); } /* 100%. */
+}
+
+@media (max-width: 768px) { /* Mobile query. */
+    .container { /* Container adjust. */
+        padding: 15px; /* Padding. */
+    }
+    nav ul { /* Nav adjust. */
+        flex-direction: column; /* Column. */
+    }
+    nav ul li { /* Item adjust. */
+        margin: 10px 0; /* Margin. */
+    }
+    .section { /* Section adjust. */
+        padding: 60px 0 40px; /* Padding. */
+        margin-top: 80px; /* Margin. */
+    }
+    .timeline-item { /* Timeline mobile. */
+        width: 100%; /* Width. */
+        left: 0 !important; /* Left. */
+        transform: translateX(0) !important; /* Translate. */
+    }
+    .timeline::after { /* Line mobile. */
+        left: 0; /* Left. */
+    }
+}
+
+.dark-mode { /* Dark mode class. */
+    background-color: #121212; /* Background. */
+    color: #e0e0e0; /* Text color. */
+}
+
+.dark-mode #header { /* Header in dark. */
+    background-color: #003366; /* Background. */
+}
+
+.dark-mode .section { /* Section in dark. */
+    background-color: #1e1e1e; /* Background. */
+}
+
+.dark-mode .skill, .dark-mode .timeline-item, .dark-mode .project-item { /* Items in dark. */
+    background: #2c2c2c; /* Background. */
+}
+
+.dark-mode .progress-bar { /* Bar in dark. */
+    background: #404040; /* Background. */
+}
+
+.dark-mode button, .dark-mode .download-btn { /* Buttons in dark. */
+    background-color: #003366; /* Background. */
+}
+
+.dark-mode button:hover, .dark-mode .download-btn:hover { /* Hover in dark. */
+    background-color: #002244; /* Background. */
+}
+
+.dark-mode .modal-content { /* Modal in dark. */
+    background: #2c2c2c; /* Background. */
+    color: #e0e0e0; /* Color. */
+}
+
+#back-to-top { /* Back-to-top button. */
+    position: fixed; /* Fixed. */
+    bottom: 20px; /* Bottom. */
+    right: 20px; /* Right. */
+    background-color: #007bff; /* Background. */
+    color: white; /* Color. */
+    border: none; /* No border. */
+    padding: 10px; /* Padding. */
+    border-radius: 50%; /* Circle. */
+    cursor: pointer; /* Cursor. */
+    display: none; /* Hidden initially. */
+    z-index: 1000; /* Z-index. */
+    transition: opacity 0.3s; /* Transition. */
+}
+
+#back-to-top:hover { /* Hover. */
+    background-color: #0056b3; /* Background. */
+}
+
+.fade-in { /* Fade animation class. */
+    animation: fadeIn 1s ease-in; /* Animation. */
+}
+
+@keyframes fadeIn { /* Keyframes. */
+    from { opacity: 0; transform: translateY(20px); } /* From. */
+    to { opacity: 1; transform: translateY(0); } /* To. */
+}
